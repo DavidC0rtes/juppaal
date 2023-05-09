@@ -13,10 +13,7 @@ import java.util.regex.Pattern;
 import org.jdom.Element;
 import org.jdom.filter.ElementFilter;
 
-import uppaal.labels.Comment;
-import uppaal.labels.Guard;
-import uppaal.labels.Select;
-import uppaal.labels.Update;
+import uppaal.labels.*;
 
 public class Automaton implements Comparable<Automaton>{
 	private static final Pattern locationIdRegExPattern = Pattern.compile("\\d+");
@@ -422,10 +419,15 @@ public class Automaton implements Comparable<Automaton>{
 				transition.setGuard(new Guard(it.getGuard()));
 				transition.setSelect(new Select(it.getSelect()));
 				transition.setUpdate(new Update(it.getUpdate()));
+				// Preserve output broadcast syncs for the sake of clarity
+				if (it.getSync() != null && it.getSync().getSyncType().equals(Synchronization.SyncType.INITIATOR)) {
+
+				}
+
+
 				System.out.println(transition.getSource().getName() +"    ->    " + transition.getTarget().getName());
 				System.out.println(it.getGuard());
 				System.out.println(transition.getGuard());
-
 			}
 		}
 		System.out.println("ST product");

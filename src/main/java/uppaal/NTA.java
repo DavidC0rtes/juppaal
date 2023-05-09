@@ -40,20 +40,32 @@ public class NTA extends UppaalElement{
 			a.setAutoPositioned(autoPositioned);
 	}
 
-	
-//	public void normalize(){
-//		for (Automaton automaton : automata){
-//			
-//		}
-//	}
-
 	public NTA(String uppaalFile) {
 		SAXBuilder builder = new SAXBuilder();
+
 		try {
+			builder.setValidation(false);
+			builder.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
 			Document uppaalDoc = builder.build(uppaalFile);
-			buildNTA(uppaalDoc);
-		} catch (IOException | JDOMException e) {
-			e.printStackTrace();
+			Iterator<Element> i = uppaalDoc.getRootElement().getChildren().iterator();
+
+			while(i.hasNext()) {
+				Element child = (Element)i.next();
+				if (child.getName().equals("declaration")) {
+					assert child.getContent().size() == 1 : "Declaration elements should not have children";
+
+					this.declarations = new Declaration(child);
+				} else if (child.getName().equals("template")) {
+					Automaton automaton = new Automaton(child);
+					this.automata.add(automaton);
+				} else if (child.getName().equals("system")) {
+					this.systemDeclaration = new SystemDeclaration(child);
+				} else {
+					System.err.println("unhandled element: " + child.getName());
+				}
+			}
+		} catch (JDOMException | IOException ex) {
+			ex.printStackTrace();
 		}
 	}
 

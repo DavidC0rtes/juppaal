@@ -283,6 +283,9 @@ public class Transition {
 		this.setGuard(new Guard(string));
 	}
 
+	public String getGuardAsString() {
+		return this.guard == null ? "" : this.guard.toString();
+	}
 	/************ TIGA SPECIFIC ***************/
 	
 	private boolean controllable = true;
