@@ -379,15 +379,22 @@ public class Automaton implements Comparable<Automaton>{
 		String idstr = a.getUniqueIdString() + "_" + b.getUniqueIdString();
 		Location result = new Location(product, name);
 		if(a.isAccept() && b.isAccept()){
-			System.out.println(name);
 			result.setAccept(true);
 		}
 		cloc.put(idstr, result);
 		result.getInvariant().conjoin(a.getInvariant());
 		result.getInvariant().conjoin(b.getInvariant());
-		System.out.println(idstr);
+
 		if(a.getComment()!=null && b.getComment()!=null && b.getComment().equals(a.getComment()))
 			result.setComment(new Comment(b.getComment()));
+
+		if (a.getType().equals(Location.LocationType.COMMITTED) || b.getType().equals(Location.LocationType.COMMITTED)) {
+			result.setType(Location.LocationType.COMMITTED);
+		} else if (a.getType().equals(Location.LocationType.URGENT) || b.getType().equals(Location.LocationType.URGENT)) {
+			result.setType(Location.LocationType.URGENT);
+		} else {
+			result.setType(Location.LocationType.NORMAL);
+		}
 		return result;
 	}
 	public Automaton(Automaton a, Automaton b, String name){

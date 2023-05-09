@@ -360,20 +360,7 @@ public class NTA extends UppaalElement{
 //		updateLabelPositions();
 		writeDocument(generateXMLDocument(), printStream);
 	}
-	
-	public void writeXMLWithPrettyLayout(PrintStream printStream) {
-		try {
-			Document uDoc = UPPAALPrettyfy.getPrettyLayoutXml(generateXMLDocument());
-			writeDocument(uDoc, printStream);
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} catch (JDOMException e) {
-			e.printStackTrace();
-		}
-	}
-	
+
 	private void writeDocument(Document uppaalXMLDoc, PrintStream pStream) {
 		Format format = Format.getPrettyFormat();
 		XMLOutputter output = new XMLOutputter(format);
@@ -423,17 +410,7 @@ public class NTA extends UppaalElement{
 			e.printStackTrace();
 		}
 	}
-	
-	public void writePrettyLayoutModelToFile(String outputFile) {
-		try {
-			java.io.PrintStream printStream = new PrintStream(outputFile);
-			this.writeXMLWithPrettyLayout(printStream);
-			printStream.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
+
 	public static Boolean correctXML(String inputFile) {
 		// Check whether the output is valid UPPAAL XML
 		System.out.println("Validating XML file...");
