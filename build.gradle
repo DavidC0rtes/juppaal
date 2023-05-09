@@ -3,15 +3,15 @@ apply plugin: 'maven-publish'
 apply plugin: 'eclipse'
 
 group = 'dk.aau.cs.uppaal'
-version = '1.0.0'
+version = '1.0.2'
 
 description = "juppaal"
 
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+sourceCompatibility = 11
+targetCompatibility = 11
 
 wrapper {
-	 gradleVersion = '2.10' 
+	 gradleVersion = '8.1.1'
 }
 
 task customFatJar(type: Jar) {
@@ -40,4 +40,20 @@ dependencies {
     implementation group: 'att.grappa', name: 'grappa', version:'1.2'
     testImplementation group: 'junit', name: 'junit', version:'4.11'
 
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+                    groupId = 'dk.aau.cs.uppaal'
+                    artifactId = 'juppaal'
+                    version = "1.0.2"
+                    from components.java
+
+                    pom {
+                        name = 'JUppaal'
+                        description = 'Java API for working with UPPAAL model files '
+                    }
+        }
+    }
 }
