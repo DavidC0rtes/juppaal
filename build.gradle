@@ -14,13 +14,16 @@ wrapper {
 	 gradleVersion = '2.10' 
 }
 
-task fatJar(type: Jar) {
+task customFatJar(type: Jar) {
 	manifest {
         attributes 'Implementation-Title': 'JUppaal',  
         	'Implementation-Version': version
     }
-    baseName = project.name + '-all'
-    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
     with jar
 }
 
