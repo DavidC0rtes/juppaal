@@ -38,7 +38,6 @@ dependencies {
     implementation group: 'org.jdom', name: 'jdom', version:'1.1'
     implementation group: 'jaxen', name: 'jaxen', version:'1.1.6'
     testImplementation group: 'junit', name: 'junit', version:'4.11'
-
 }
 
 publishing {

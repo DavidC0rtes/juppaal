@@ -13,6 +13,7 @@ import java.util.regex.Pattern;
 import org.jdom.Element;
 import org.jdom.filter.ElementFilter;
 
+import uppaal.declarations.Channel;
 import uppaal.labels.*;
 
 public class Automaton implements Comparable<Automaton>{
@@ -414,36 +415,48 @@ public class Automaton implements Comparable<Automaton>{
 			for(Location s : spec.getLocations()){
 				String source = it.getSource().getUniqueIdString() +"_"+ s.getUniqueIdString(); 
 				String target = it.getTarget().getUniqueIdString() +"_"+ s.getUniqueIdString();
-				System.out.println(source +"    ->    " + target);				
+//				System.out.println(source +"    ->    " + target);
 				Transition transition = new Transition(this, cloc.get(source), cloc.get(target));
 				transition.setGuard(new Guard(it.getGuard()));
 				transition.setSelect(new Select(it.getSelect()));
 				transition.setUpdate(new Update(it.getUpdate()));
 				// Preserve output broadcast syncs for the sake of clarity
 				if (it.getSync() != null && it.getSync().getSyncType().equals(Synchronization.SyncType.INITIATOR)) {
-
+					String chanName = it.getSync().getChannelName();
+					s.getAutomaton().getDeclaration().declarations.forEach(str -> {
+						if (str.contains(chanName) && str.contains("broadcast")) {
+							transition.setSync(it.getSync());
+						}
+					});
 				}
-
-
-				System.out.println(transition.getSource().getName() +"    ->    " + transition.getTarget().getName());
+				/*System.out.println(transition.getSource().getName() +"    ->    " + transition.getTarget().getName());
 				System.out.println(it.getGuard());
-				System.out.println(transition.getGuard());
+				System.out.println(transition.getGuard());*/
 			}
 		}
 		System.out.println("ST product");
 		for(Transition st: sT){
 			for(Location i : impl.getLocations()){
-				System.out.println();
-				System.out.println("loc: "+i.getName());
+//				System.out.println();
+//				System.out.println("loc: "+i.getName());
 				String source = i.getUniqueIdString() + "_" + st.getSource().getUniqueIdString(); 
 				String target = i.getUniqueIdString() + "_" + st.getTarget().getUniqueIdString() ;
-				System.out.println(source +"    ->    " + target);
-				System.out.println(cloc.get(source) + " --- "+ cloc.get(target));
+//				System.out.println(source +"    ->    " + target);
+//				System.out.println(cloc.get(source) + " --- "+ cloc.get(target));
 				Transition transition = new Transition(this, cloc.get(source), cloc.get(target));
 				transition.setGuard(new Guard(st.getGuard()));
 				transition.setSelect(new Select(st.getSelect()));
 				transition.setUpdate(new Update(st.getUpdate()));
-				System.out.println(transition.getSource().getName() +"    ->    " + transition.getTarget().getName());				
+				// Preserve output broadcast syncs for the sake of clarity
+				if (st.getSync() != null && st.getSync().getSyncType().equals(Synchronization.SyncType.INITIATOR)) {
+					String chanName = st.getSync().getChannelName();
+					i.getAutomaton().getDeclaration().declarations.forEach(str -> {
+						if (str.contains(chanName) && str.contains("broadcast")) {
+							transition.setSync(st.getSync());
+						}
+					});
+				}
+				//System.out.println(transition.getSource().getName() +"    ->    " + transition.getTarget().getName());
 			}
 		}
 
@@ -451,9 +464,9 @@ public class Automaton implements Comparable<Automaton>{
 		this.setInit(cloc.get(init));
 
 		Declaration d = new Declaration(spec.getDeclaration());
-		System.out.println(d);
+//		System.out.println(d);
 		d.add(impl.getDeclaration());
-		System.out.println(d);
+//		System.out.println(d);
 		this.setDeclaration(d);
 		this.setAutoPositioned(true);
 		/*		
