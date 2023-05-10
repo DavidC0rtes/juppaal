@@ -90,6 +90,7 @@ public class Automaton implements Comparable<Automaton>{
 			init = id_locationMap.get("id" + s);
 		}
 	}
+
 	
 	public Location getLocation(String name){
 		Location result = null;
@@ -369,7 +370,6 @@ public class Automaton implements Comparable<Automaton>{
 		return count;
 	}
 	
-	
 	////******************** PRODUCT TEST *****************************
 	private Map<String, Location> cloc = new HashMap<String, Location>();
 	private Location getPLocation(Automaton product, Location a, Location b){
@@ -423,8 +423,8 @@ public class Automaton implements Comparable<Automaton>{
 				// Preserve output broadcast syncs for the sake of clarity
 				if (it.getSync() != null && it.getSync().getSyncType().equals(Synchronization.SyncType.INITIATOR)) {
 					String chanName = it.getSync().getChannelName();
-					s.getAutomaton().getDeclaration().declarations.forEach(str -> {
-						if (str.contains(chanName) && str.contains("broadcast")) {
+					it.getTarget().getAutomaton().getDeclaration().declarations.forEach(str -> {
+						if (str.contains(chanName)) {
 							transition.setSync(it.getSync());
 						}
 					});
@@ -450,8 +450,8 @@ public class Automaton implements Comparable<Automaton>{
 				// Preserve output broadcast syncs for the sake of clarity
 				if (st.getSync() != null && st.getSync().getSyncType().equals(Synchronization.SyncType.INITIATOR)) {
 					String chanName = st.getSync().getChannelName();
-					i.getAutomaton().getDeclaration().declarations.forEach(str -> {
-						if (str.contains(chanName) && str.contains("broadcast")) {
+					st.getTarget().getAutomaton().getDeclaration().declarations.forEach(str -> {
+						if (str.contains(chanName)) {
 							transition.setSync(st.getSync());
 						}
 					});

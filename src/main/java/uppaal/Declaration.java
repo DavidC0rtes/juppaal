@@ -1,5 +1,6 @@
 package uppaal;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -10,8 +11,7 @@ public class Declaration extends UppaalElement{
 	List<String> declarations = new LinkedList<String>();;
 	public Declaration(Element declarationsElement){
 		String[] decls = declarationsElement.getText().split("\n");
-		for(String decl : decls)
-			declarations.add(decl);
+		declarations.addAll(Arrays.asList(decls));
 	}
 	
 	public Declaration(Declaration declarations) {

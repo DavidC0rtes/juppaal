@@ -53,7 +53,6 @@ public class NTA extends UppaalElement{
 				Element child = (Element)i.next();
 				if (child.getName().equals("declaration")) {
 					assert child.getContent().size() == 1 : "Declaration elements should not have children";
-
 					this.declarations = new Declaration(child);
 				} else if (child.getName().equals("template")) {
 					Automaton automaton = new Automaton(child);
