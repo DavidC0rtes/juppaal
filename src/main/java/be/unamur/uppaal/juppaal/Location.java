@@ -1,4 +1,4 @@
-package uppaal;
+package be.unamur.uppaal.juppaal;
 
 import java.awt.Color;
 import java.util.LinkedList;
@@ -8,9 +8,9 @@ import java.util.regex.Pattern;
 
 import org.jdom.Element;
 
-import uppaal.labels.Comment;
-import uppaal.labels.ExponentialRate;
-import uppaal.labels.Invariant;
+import be.unamur.uppaal.juppaal.labels.Comment;
+import be.unamur.uppaal.juppaal.labels.ExponentialRate;
+import be.unamur.uppaal.juppaal.labels.Invariant;
 
 public class Location extends PositionedUppaalElement{
 

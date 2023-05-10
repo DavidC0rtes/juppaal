@@ -2,7 +2,7 @@ apply plugin: 'java'
 apply plugin: 'maven-publish'
 apply plugin: 'eclipse'
 
-group = 'be.unamur.uppaal'
+group = 'be.unamur.uppaal.juppaal'
 version = '1.0.3'
 
 description = "juppaal"
@@ -43,7 +43,7 @@ dependencies {
 publishing {
     publications {
         maven(MavenPublication) {
-                    groupId = 'be.unamur.uppaal'
+                    groupId = 'be.unamur.uppaal.juppaal'
                     artifactId = 'juppaal'
                     version = "1.0.3"
                     from components.java

@@ -1,4 +1,4 @@
-package uppaal;
+package be.unamur.uppaal.juppaal;
 
 
 import java.util.ArrayList;
@@ -13,8 +13,7 @@ import java.util.regex.Pattern;
 import org.jdom.Element;
 import org.jdom.filter.ElementFilter;
 
-import uppaal.declarations.Channel;
-import uppaal.labels.*;
+import be.unamur.uppaal.juppaal.labels.*;
 
 public class Automaton implements Comparable<Automaton>{
 	private static final Pattern locationIdRegExPattern = Pattern.compile("\\d+");

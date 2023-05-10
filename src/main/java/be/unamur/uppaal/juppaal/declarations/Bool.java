@@ -1,4 +1,4 @@
-package uppaal.declarations;
+package be.unamur.uppaal.juppaal.declarations;
 
 @Deprecated
 public class Bool {

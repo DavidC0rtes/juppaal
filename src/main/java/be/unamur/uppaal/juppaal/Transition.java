@@ -1,4 +1,4 @@
-package uppaal;
+package be.unamur.uppaal.juppaal;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -8,11 +8,11 @@ import java.util.regex.Pattern;
 
 import org.jdom.Element;
 
-import uppaal.labels.Guard;
-import uppaal.labels.Probability;
-import uppaal.labels.Select;
-import uppaal.labels.Synchronization;
-import uppaal.labels.Update;
+import be.unamur.uppaal.juppaal.labels.Guard;
+import be.unamur.uppaal.juppaal.labels.Probability;
+import be.unamur.uppaal.juppaal.labels.Select;
+import be.unamur.uppaal.juppaal.labels.Synchronization;
+import be.unamur.uppaal.juppaal.labels.Update;
 
 public class Transition {
 	private static final Pattern locationIdRegExPattern = Pattern.compile("[a-zA-Z_]*([0-9]*)");

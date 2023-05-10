@@ -1,4 +1,4 @@
-package uppaal;
+package be.unamur.uppaal.juppaal;
 
 import org.jdom.Element;
 

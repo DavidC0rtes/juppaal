@@ -1,4 +1,4 @@
-package uppaal.declarations;
+package be.unamur.uppaal.juppaal.declarations;
 
 import java.util.Objects;
 

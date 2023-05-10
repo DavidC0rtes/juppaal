@@ -1,8 +1,8 @@
-package uppaal.labels;
+package be.unamur.uppaal.juppaal.labels;
 
+import be.unamur.uppaal.juppaal.PositionedUppaalElement;
 import org.jdom.*;
 
-import uppaal.PositionedUppaalElement;
 
 public abstract class Label extends PositionedUppaalElement implements Cloneable{
 	@Override

@@ -1,13 +1,13 @@
-package uppaal;
+package be.unamur.uppaal.juppaal;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import uppaal.labels.Comment;
-import uppaal.labels.Guard;
-import uppaal.labels.Select;
-import uppaal.labels.Update;
+import be.unamur.uppaal.juppaal.labels.Comment;
+import be.unamur.uppaal.juppaal.labels.Guard;
+import be.unamur.uppaal.juppaal.labels.Select;
+import be.unamur.uppaal.juppaal.labels.Update;
 
 public class UppaalTest {
 	Map<String, Location> cloc = new HashMap<String, Location>();

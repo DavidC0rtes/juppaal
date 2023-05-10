@@ -1,4 +1,4 @@
-package uppaal;
+package be.unamur.uppaal.juppaal;
 
 import java.util.Iterator;
 import java.util.LinkedList;

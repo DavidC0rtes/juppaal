@@ -1,4 +1,4 @@
-package uppaal.labels;
+package be.unamur.uppaal.juppaal.labels;
 
 import java.util.ArrayList;
 import java.util.List;
