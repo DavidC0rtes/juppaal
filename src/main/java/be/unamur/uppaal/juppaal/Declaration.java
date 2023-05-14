@@ -46,9 +46,13 @@ public class Declaration extends UppaalElement{
 	
 	@Override
 	public Element generateXMLElement() {
-		Element result = super.generateXMLElement();
-		result.addContent(toString());
-		return result;
+		if (!this.toString().isEmpty()) {
+			Element result = super.generateXMLElement();
+			result.addContent(toString());
+			return result;
+		}
+
+		return null;
 	}
 
 	public List<String> getStrings() {
@@ -61,5 +65,4 @@ public class Declaration extends UppaalElement{
 	public void remove(String s) {
 		declarations.remove(s);
 	}
-	
 }

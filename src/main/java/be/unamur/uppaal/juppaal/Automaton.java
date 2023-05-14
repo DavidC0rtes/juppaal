@@ -333,7 +333,7 @@ public class Automaton implements Comparable<Automaton>{
 		if(parameter!=null)
 			result.addContent(this.parameter.generateXMLElement());
 
-		if(declaration!=null){
+		if(declaration!=null && !declaration.toString().isEmpty()){
 			result.addContent(declaration.generateXMLElement());
 		}
 		for (Location location : getRegularLocations()) {
@@ -420,14 +420,14 @@ public class Automaton implements Comparable<Automaton>{
 				transition.setSelect(new Select(it.getSelect()));
 				transition.setUpdate(new Update(it.getUpdate()));
 				// Preserve output broadcast syncs for the sake of clarity
-				if (it.getSync() != null && it.getSync().getSyncType().equals(Synchronization.SyncType.INITIATOR)) {
-					String chanName = it.getSync().getChannelName();
-					it.getTarget().getAutomaton().getDeclaration().declarations.forEach(str -> {
-						if (str.contains(chanName)) {
-							transition.setSync(it.getSync());
-						}
-					});
-				}
+//				if (it.getSync() != null && it.getSync().getSyncType().equals(Synchronization.SyncType.INITIATOR)) {
+//					String chanName = it.getSync().getChannelName();
+//					it.getTarget().getAutomaton().getDeclaration().declarations.forEach(str -> {
+//						if (str.contains(chanName)) {
+//							transition.setSync(it.getSync());
+//						}
+//					});
+//				}
 				/*System.out.println(transition.getSource().getName() +"    ->    " + transition.getTarget().getName());
 				System.out.println(it.getGuard());
 				System.out.println(transition.getGuard());*/
@@ -447,14 +447,14 @@ public class Automaton implements Comparable<Automaton>{
 				transition.setSelect(new Select(st.getSelect()));
 				transition.setUpdate(new Update(st.getUpdate()));
 				// Preserve output broadcast syncs for the sake of clarity
-				if (st.getSync() != null && st.getSync().getSyncType().equals(Synchronization.SyncType.INITIATOR)) {
-					String chanName = st.getSync().getChannelName();
-					st.getTarget().getAutomaton().getDeclaration().declarations.forEach(str -> {
-						if (str.contains(chanName)) {
-							transition.setSync(st.getSync());
-						}
-					});
-				}
+//				if (st.getSync() != null && st.getSync().getSyncType().equals(Synchronization.SyncType.INITIATOR)) {
+//					String chanName = st.getSync().getChannelName();
+//					st.getTarget().getAutomaton().getDeclaration().declarations.forEach(str -> {
+//						if (str.contains(chanName)) {
+//							transition.setSync(st.getSync());
+//						}
+//					});
+//				}
 				//System.out.println(transition.getSource().getName() +"    ->    " + transition.getTarget().getName());
 			}
 		}
