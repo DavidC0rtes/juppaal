@@ -20,6 +20,7 @@ import org.jdom.output.XMLOutputter;
 public class NTA extends UppaalElement{
 	private Declaration declarations = new Declaration();
 	private SystemDeclaration systemDeclaration = new SystemDeclaration();
+	private Queries queries = new Queries();
 	
 	public SystemDeclaration getSystemDeclaration() {
 		return systemDeclaration;
@@ -47,7 +48,7 @@ public class NTA extends UppaalElement{
 			builder.setValidation(false);
 			builder.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
 			Document uppaalDoc = builder.build(uppaalFile);
-			Iterator<Element> i = uppaalDoc.getRootElement().getChildren().iterator();
+			Iterator i = uppaalDoc.getRootElement().getChildren().iterator();
 
 			while(i.hasNext()) {
 				Element child = (Element)i.next();
@@ -59,6 +60,8 @@ public class NTA extends UppaalElement{
 					this.automata.add(automaton);
 				} else if (child.getName().equals("system")) {
 					this.systemDeclaration = new SystemDeclaration(child);
+				} else if (child.getName().equals("queries")) {
+					this.queries = new Queries(child);
 				} else {
 					System.err.println("unhandled element: " + child.getName());
 				}
@@ -392,6 +395,7 @@ public class NTA extends UppaalElement{
 			result.addContent(automaton.generateXMLElement());
 		}
 		result.addContent(systemDeclaration.generateXMLElement());
+		result.addContent(queries.generateXMLElement());
 		return result;
 	}
 	
