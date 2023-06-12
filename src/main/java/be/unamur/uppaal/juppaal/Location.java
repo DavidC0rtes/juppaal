@@ -58,7 +58,7 @@ public class Location extends PositionedUppaalElement{
 	private boolean branchPointLocation;
 	
 	public Location(Automaton automaton) {
-		this(automaton, null, null, 0,0);
+		this(automaton, null, LocationType.NORMAL, 0,0);
 	}
 	
 	public Location(Automaton automaton, Element locationElement) {
@@ -67,9 +67,13 @@ public class Location extends PositionedUppaalElement{
 		color = ColorUtil.findColor(locationElement);
 		@SuppressWarnings("unchecked")
 		List<Element> children = locationElement.getChildren();
+
+		Element nameEl = locationElement.getChild("name");
+		name = nameEl != null
+				? new Name(nameEl)
+				: new Name(getUniqueIdString());
+
 		for(Element child: children){
-			if(child.getName().equals("name"))
-				name = new Name(child);
 			if(child.getName().equals("comment"))
 				comment = new Comment(child);
 			if(child.getName().equals("label")){
@@ -106,7 +110,8 @@ public class Location extends PositionedUppaalElement{
 	 */
 	public Location(Automaton automaton, Name name, LocationType type, int x, int y){
 		super(x,y);
-		this.name = name;
+		this.name = name != null ? name : new Name(getUniqueIdString());
+		this.type = type;
 		this.comment = new Comment();
 		this.invariant = new Invariant(x, y);
 		this.expRate = new ExponentialRate(x,y);
