@@ -1,4 +1,5 @@
-# JUppaal [![Build Status](https://travis-ci.org/ksluckow/JUppaal.svg?branch=master)](https://travis-ci.org/ksluckow/JUppaal)
+# JUppaal ![Build](https://github.com/DavidC0rtes/juppaal/actions/workflows/gradle.yml/badge.svg)
+
 Java API for working with UPPAAL model files.
 
 Allows to create UPPAAL Timed Automata models programmatically in Java. The library also supports loading UPPAAL models and manipulating them
@@ -8,6 +9,11 @@ JUppaal is shipped with a Maven build file. To build and install it, simply exec
 ```!bash
 $ gradle build
 ```
+To add to maven local and use with other projects run
+```!bash
+$ gradle publishToMavenLocal
+```
 # Authors
+* David Cortés
 * Thomas Bøgholm
 * Kasper Luckow
