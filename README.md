@@ -1,4 +1,5 @@
-# JUppaal ![Build](https://github.com/github/docs/actions/workflows/main.yml/badge.svg)
+# JUppaal ![Build](https://github.com/DavidC0rtes/juppaal/actions/workflows/gradle.yml/badge.svg)
+
 Java API for working with UPPAAL model files.
 
 Allows to create UPPAAL Timed Automata models programmatically in Java. The library also supports loading UPPAAL models and manipulating them
