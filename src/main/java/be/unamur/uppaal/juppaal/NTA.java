@@ -2,10 +2,7 @@ package be.unamur.uppaal.juppaal;
 
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 import org.jdom.DocType;
 import org.jdom.Document;
@@ -21,6 +18,7 @@ public class NTA extends UppaalElement{
 	private Declaration declarations = new Declaration();
 	private SystemDeclaration systemDeclaration = new SystemDeclaration();
 	private Queries queries = new Queries();
+	private String modelPath;
 	
 	public SystemDeclaration getSystemDeclaration() {
 		return systemDeclaration;
@@ -42,6 +40,7 @@ public class NTA extends UppaalElement{
 	}
 
 	public NTA(String uppaalFile) {
+		this.modelPath = uppaalFile;
 		SAXBuilder builder = new SAXBuilder();
 
 		try {
@@ -388,8 +387,7 @@ public class NTA extends UppaalElement{
 	
 	@Override
 	protected Element generateXMLElement() {
-		Element result=super.generateXMLElement(); 
-		
+		Element result=super.generateXMLElement();
 		result.addContent(declarations.generateXMLElement());
 		for(Automaton automaton : automata){
 			result.addContent(automaton.generateXMLElement());
@@ -407,7 +405,7 @@ public class NTA extends UppaalElement{
 	private Document generateXMLDocument() {
 		return new Document(this.generateXMLElement(),new DocType("nta",
 				"-//Uppaal Team//DTD Flat System 1.1//EN",
-		"flat-1_1.dtd"));
+		"http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd"));
 	}
 	
 	/**
@@ -462,7 +460,7 @@ public class NTA extends UppaalElement{
 				return automaton;
 			}
 		}
-		System.err.println("Automaton ["+string +"] not found in "+this.getSystemName());
+		System.err.println("Automaton ["+string +"] not found in "+ Arrays.toString(automata.toArray()));
 		return null;
 	}
 
@@ -472,5 +470,9 @@ public class NTA extends UppaalElement{
 			count += a.removeStumpAngles(angleThreshold, lengthThreshold);
 		}
 		return count;
+	}
+
+	public String getModelPath() {
+		return modelPath;
 	}
 }
