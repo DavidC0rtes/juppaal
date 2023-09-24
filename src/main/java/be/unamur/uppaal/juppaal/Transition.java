@@ -18,6 +18,11 @@ public class Transition {
 	private static final Pattern locationIdRegExPattern = Pattern.compile("[a-zA-Z_]*([0-9]*)");
 	Location source;
 	Location destination;
+
+	public Automaton getAutomaton() {
+		return automaton;
+	}
+
 	Automaton automaton;
 	public void setPositioned(boolean positioned) {
 		for(Nail nail : nails){

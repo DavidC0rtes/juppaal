@@ -3,7 +3,7 @@ apply plugin: 'maven-publish'
 apply plugin: 'eclipse'
 
 group = 'be.unamur.uppaal'
-version = '1.0.3'
+version = '1.0.4'
 
 description = "juppaal"
 
@@ -45,7 +45,7 @@ publishing {
         maven(MavenPublication) {
                     groupId = 'be.unamur.uppaal'
                     artifactId = 'juppaal'
-                    version = "1.0.3"
+                    version = '1.0.4'
                     from components.java
 
                     pom {

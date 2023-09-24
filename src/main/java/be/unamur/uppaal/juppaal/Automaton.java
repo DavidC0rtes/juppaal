@@ -409,16 +409,21 @@ public class Automaton implements Comparable<Automaton>{
 		System.out.println("Transition product");
 		List<Transition> iT = impl.getTransitions();
 		List<Transition> sT = spec.getTransitions();
-		System.out.println("IT");
+
 		for(Transition it: iT){
 			for(Location s : spec.getLocations()){
 				String source = it.getSource().getUniqueIdString() +"_"+ s.getUniqueIdString(); 
 				String target = it.getTarget().getUniqueIdString() +"_"+ s.getUniqueIdString();
 //				System.out.println(source +"    ->    " + target);
 				Transition transition = new Transition(this, cloc.get(source), cloc.get(target));
-				transition.setGuard(new Guard(it.getGuard()));
-				transition.setSelect(new Select(it.getSelect()));
-				transition.setUpdate(new Update(it.getUpdate()));
+				if (it.getGuard() != null && !it.getGuardAsString().isEmpty())
+					transition.setGuard(new Guard(it.getGuard()));
+
+				if (it.getSelect() != null && !it.getSelect().toString().isEmpty())
+					transition.setSelect(new Select(it.getSelect()));
+
+				if (it.getUpdate() != null && !it.getUpdate().toString().isEmpty())
+					transition.setUpdate(new Update(it.getUpdate()));
 				// Preserve output broadcast syncs for the sake of clarity
 //				if (it.getSync() != null && it.getSync().getSyncType().equals(Synchronization.SyncType.INITIATOR)) {
 //					String chanName = it.getSync().getChannelName();
@@ -433,7 +438,6 @@ public class Automaton implements Comparable<Automaton>{
 				System.out.println(transition.getGuard());*/
 			}
 		}
-		System.out.println("ST product");
 		for(Transition st: sT){
 			for(Location i : impl.getLocations()){
 //				System.out.println();
@@ -443,9 +447,14 @@ public class Automaton implements Comparable<Automaton>{
 //				System.out.println(source +"    ->    " + target);
 //				System.out.println(cloc.get(source) + " --- "+ cloc.get(target));
 				Transition transition = new Transition(this, cloc.get(source), cloc.get(target));
-				transition.setGuard(new Guard(st.getGuard()));
-				transition.setSelect(new Select(st.getSelect()));
-				transition.setUpdate(new Update(st.getUpdate()));
+				if (st.getGuard() != null && !st.getGuardAsString().isEmpty())
+					transition.setGuard(new Guard(st.getGuard()));
+
+				if (st.getSelect() != null && !st.getSelect().toString().isEmpty())
+					transition.setSelect(new Select(st.getSelect()));
+
+				if (st.getUpdate() != null && !st.getUpdate().toString().isEmpty())
+					transition.setUpdate(new Update(st.getUpdate()));
 				// Preserve output broadcast syncs for the sake of clarity
 //				if (st.getSync() != null && st.getSync().getSyncType().equals(Synchronization.SyncType.INITIATOR)) {
 //					String chanName = st.getSync().getChannelName();
@@ -496,6 +505,7 @@ public class Automaton implements Comparable<Automaton>{
 //				Transition prod = new Transition(product);
 			}
 		 */
+		System.out.printf("Finished %s x %s\n", a.name.getName(), b.name.getName());
 	}
 
 

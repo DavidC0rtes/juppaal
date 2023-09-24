@@ -46,13 +46,11 @@ public class Declaration extends UppaalElement{
 	
 	@Override
 	public Element generateXMLElement() {
+		Element result = super.generateXMLElement();
 		if (!this.toString().isEmpty()) {
-			Element result = super.generateXMLElement();
 			result.addContent(toString());
-			return result;
 		}
-
-		return null;
+		return result;
 	}
 
 	public List<String> getStrings() {
