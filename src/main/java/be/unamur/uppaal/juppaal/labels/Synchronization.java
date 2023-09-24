@@ -34,7 +34,7 @@ public class Synchronization extends Label {
 	public Synchronization(Element child) {
 		super(child);
 		this.channel = child.getText().substring(0, child.getText().length()-1);
-		if("?".equals(child.getText().substring(child.getText().length()-1, child.getText().length()))){
+		if("?".equals(child.getText().substring(child.getText().length()-1))){
 			syncType = SyncType.RECEIVER;
 		} else {
 			syncType = SyncType.INITIATOR;
