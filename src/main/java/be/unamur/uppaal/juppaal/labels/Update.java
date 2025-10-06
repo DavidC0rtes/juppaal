@@ -51,7 +51,8 @@ public class Update extends Label {
 	}
 	
 	public void add(Update update){
-		updates.addAll(update.getUpdates());
+		if (update != null)
+			updates.addAll(update.getUpdates());
 	}
 
 	public Element generateXMLElement() {

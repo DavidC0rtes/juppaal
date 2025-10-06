@@ -43,6 +43,8 @@ public class Invariant extends Label{
 			this.setInvariant(invariant);
 		else if(invariant.equals(""))
 			return;
+		else if (invariant.equals(this))
+			return;
 		else
 			setInvariant( new Invariant("("+this.invariant+") && ("+invariant+")"));
 	}
