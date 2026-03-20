@@ -52,6 +52,8 @@ public class Synchronization extends Label {
 		return result;
 	}
 
+	public boolean isInitiator() { return syncType == SyncType.INITIATOR; }
+
 	@Override
 	public String toString() {
 		return channel + (syncType==SyncType.RECEIVER?"?":"!");
