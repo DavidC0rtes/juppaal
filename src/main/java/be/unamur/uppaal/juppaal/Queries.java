@@ -31,7 +31,10 @@ public class Queries extends UppaalElement{
                 result.addContent(query.generateXMLElement());
             });
         }
-
         return result;
+    }
+
+    public List<Query> getQueriesList() {
+        return queriesList;
     }
 }

@@ -393,7 +393,7 @@ public class NTA extends UppaalElement{
 			result.addContent(automaton.generateXMLElement());
 		}
 		result.addContent(systemDeclaration.generateXMLElement());
-		result.addContent(queries.generateXMLElement());
+		if (queries.getQueriesList() != null && !queries.getQueriesList().isEmpty()) result.addContent(queries.generateXMLElement());
 		return result;
 	}
 	

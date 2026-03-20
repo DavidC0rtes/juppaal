@@ -61,21 +61,19 @@ public class Declaration extends UppaalElement{
 	}
 
 	public List<String> getClockDeclarations() {
-		List<String> clockNames = new ArrayList<>();
-		Pattern clockPattern = Pattern.compile("clock\\s+([a-zA-Z_]([a-zA-Z0-9_])*)(\\s*,\\s*(?:[a-zA-Z_][a-zA-Z0-9_]*))*;");
-		for (String declaration: declarations) {
-			Matcher matcher = clockPattern.matcher(declaration);
-			if (matcher.find()) {
-				clockNames.add(matcher.group(1).trim());
-				if (matcher.group(3) != null && !matcher.group(3).isBlank()) {
-					String[] clocks = matcher.group(3).split(",");
-					for (String clock: clocks) {
-						if (!clock.isBlank()) clockNames.add(clock);
-					}
-				}
-			}
-		}
-		return clockNames;
+	    List<String> clockNames = new ArrayList<>();
+	    Pattern clockPattern = Pattern.compile("^\\s*clock\\s+([^;]+);");
+	    for (String declaration : declarations) {
+	        Matcher matcher = clockPattern.matcher(declaration.trim());
+	        if (matcher.find()) {
+	            String allClocks = matcher.group(1);
+	            String[] clocks = allClocks.split(",");
+	            for (String clock : clocks) {
+	                clockNames.add(clock.trim());
+	            }
+	        }
+	    }
+	    return clockNames;
 	}
 
 	public void add(String s) {

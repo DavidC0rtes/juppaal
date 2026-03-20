@@ -1,0 +1,20 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: JUPPAAL
+message: Java API for working with UPPAAL model files
+type: software
+authors:
+  - given-names: David
+    family-names: Cortés
+    orcid: 'https://orcid.org/0009-0002-5771-8817'
+repository-code: 'https://github.com/DavidC0rtes/juppaal'
+abstract: Java API for working with UPPAAL model files.
+keywords:
+  - uppaal
+  - java
+  - automata
+license: LGPL-2.1
+version: 1.0.4
+
