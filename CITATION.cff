@@ -11,6 +11,15 @@ authors:
     orcid: 'https://orcid.org/0009-0002-5771-8817'
 repository-code: 'https://github.com/DavidC0rtes/juppaal'
 abstract: Java API for working with UPPAAL model files.
+references:
+  - authors:
+      - family-names: Bøgholm
+        given-names: Thomas
+      - family-names: Luckow
+        given-names: Kasper
+    title: "Java API for working with UPPAAL model files"
+    type: software
+    version: 1.0.0
 keywords:
   - uppaal
   - java
