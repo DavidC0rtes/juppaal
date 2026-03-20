@@ -26,4 +26,8 @@ keywords:
   - automata
 license: LGPL-2.1
 version: 1.0.4
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.19134014
+date-released: 2026-03-20
 
